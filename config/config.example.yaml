@@ -1,0 +1,72 @@
+rig_id: rig-xmr-01
+coin: xmr
+mode: xmrig
+poll_interval_seconds: 15
+warmup_seconds: 180
+restart_if_below_for_seconds: 300
+restart_backoff_seconds: 60
+max_restart_attempts: 5
+api_bind_host: 127.0.0.1
+api_bind_port: 8080
+log_level: INFO
+
+miner:
+  enabled: true
+  cwd: /opt/xmrig
+  command:
+    - /usr/local/bin/xmrig
+    - --http-enabled
+    - --http-host=127.0.0.1
+    - --http-port=18080
+    - -o
+    - pool.supportxmr.com:3333
+    - -u
+    - WALLET_ADDRESS
+    - -p
+    - rig-xmr-01
+  env: {}
+  stdout_log_path: null
+  stderr_log_path: null
+
+telemetry:
+  url: http://127.0.0.1:18080/2/summary
+  timeout_seconds: 5
+  headers: {}
+
+xmrig_tuning:
+  profile: balanced
+  huge_pages: true
+  randomx_1gb_pages: false
+  cpu_priority: null
+  cpu_max_threads_hint: 75
+  cpu_yield: false
+  randomx_mode: auto
+  randomx_no_numa: false
+  randomx_cache_qos: false
+  randomx_wrmsr: false
+  cpu_affinity: null
+  benchmark_command:
+    - /usr/local/bin/xmrig
+    - --bench=1M
+    - --randomx-1gb-pages
+
+security:
+  control_token: change-me
+
+thresholds:
+  min_hashrate: 5000
+  max_rejection_ratio: 0.05
+  max_telemetry_failures: 4
+  telemetry_restart_grace_seconds: 120
+
+pools:
+  - name: primary
+    url: pool.supportxmr.com:3333
+    user: WALLET_ADDRESS
+    password: rig-xmr-01
+    priority: 1
+  - name: secondary
+    url: gulf.moneroocean.stream:10128
+    user: WALLET_ADDRESS
+    password: rig-xmr-01
+    priority: 2

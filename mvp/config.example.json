@@ -1,0 +1,26 @@
+{
+  "rig_id": "lab-xmrig-01",
+  "mode": "xmrig",
+  "poll_interval_seconds": 15,
+  "warmup_seconds": 120,
+  "min_hashrate": 5000,
+  "restart_if_below_for_seconds": 180,
+  "max_restart_attempts": 5,
+  "restart_backoff_seconds": 60,
+  "miner": {
+    "enabled": false,
+    "command": [
+      "/usr/local/bin/xmrig",
+      "--http-enabled",
+      "--http-host",
+      "127.0.0.1",
+      "--http-port",
+      "18080"
+    ],
+    "cwd": "."
+  },
+  "telemetry": {
+    "url": "http://127.0.0.1:18080/2/summary",
+    "timeout_seconds": 5
+  }
+}

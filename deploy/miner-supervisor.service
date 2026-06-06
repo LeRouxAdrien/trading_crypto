@@ -1,0 +1,21 @@
+[Unit]
+Description=Miner Supervisor for XMRig
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=miner
+Group=miner
+WorkingDirectory=/opt/miner-supervisor
+Environment=MINER_SUPERVISOR_CONFIG=/etc/miner-supervisor/config.yaml
+ExecStart=/opt/miner-supervisor/.venv/bin/python -m miner_supervisor.main --config /etc/miner-supervisor/config.yaml
+Restart=on-failure
+RestartSec=10
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target
