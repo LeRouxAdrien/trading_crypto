@@ -37,7 +37,7 @@ Le produit se compose de 6 briques:
 ## Installation
 
 ```bash
-cd /Users/a.leroux/Documents/Perso/Workspace/trading_crypto
+cd trading_crypto
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
@@ -48,7 +48,7 @@ pip install -e ".[dev]"
 Copie puis adapte:
 
 ```bash
-cp /Users/a.leroux/Documents/Perso/Workspace/trading_crypto/config/config.example.yaml ./config.local.yaml
+cp trading_crypto/config/config.example.yaml ./config.local.yaml
 ```
 
 Points importants:
@@ -62,7 +62,7 @@ Points importants:
 
 ```bash
 source .venv/bin/activate
-python -m miner_supervisor.main --config /Users/a.leroux/Documents/Perso/Workspace/trading_crypto/config/config.example.yaml
+python -m miner_supervisor.main --config trading_crypto/config/config.example.yaml
 ```
 
 ## API locale
